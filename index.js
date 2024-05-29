@@ -1,14 +1,14 @@
-// return true if given string is palindrome
-// solved using recursion
+// fimd factorial of given number
 
-const palindromeString = str => {
-    if (str.length <= 1) {
-        return true;
+const getFactorial = num => {
+    let result = 1;
+    if (num <= 1) {
+        return result;
     }
-    if (str[0] !== str[str.length - 1]) {
-        return false;
+    for (let i = 2; i <= num; i++) {
+        result *= i;
     }
-    return palindromeString(str.slice(1, -1));
+    return result;
 };
-console.log(palindromeString("level")); // true
-console.log(palindromeString("abcde")); // false
+
+console.log(getFactorial(3));
