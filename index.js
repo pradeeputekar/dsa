@@ -1,14 +1,14 @@
+// return true if given string is palindrome
+// solved using recursion
 
-// return true if given number is palindrome
-
-const palindromeNumber = num => {
-    let originalNum = num;
-    let newNum = 0;
-    while (num > 0) {
-        let digit = num % 10;
-        newNum = newNum * 10 + digit;
-        num = Math.floor(num / 10);
+const palindromeString = str => {
+    if (str.length <= 1) {
+        return true;
     }
-    return newNum === originalNum;
+    if (str[0] !== str[str.length - 1]) {
+        return false;
+    }
+    return palindromeString(str.slice(1, -1));
 };
-console.log(palindrome(12121));
+console.log(palindromeString("level")); // true
+console.log(palindromeString("abcde")); // false
