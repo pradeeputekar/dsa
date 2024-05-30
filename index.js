@@ -1,17 +1,22 @@
-// find least comman multiple of three numbers
+// find greatest comman divisor
 
-const findLCM = (first, second, third) => {
-  let i = 1
-    while (true ) {
-        let factor = first * i;
-        if (factor % second === 0 && factor % third === 0) {
-            return factor;
-        }
-        i++
+const findGCD1 = (first, second) => {
+    let least = first % second;
+    if (first % second === 0) {
+        return second;
     }
+    return findGCD1(second, least);
 };
 
-console.log(findLCM(4, 6, 8)); // 24
-console.log(findLCM(4, 5, 6)); // 60
-console.log(findLCM(3, 7, 14)); // 42
-console.log(findLCM(2, 3, 4)); // 12
+console.log(findGCD1(48, 18)); //6
+
+// OR
+
+const findGCD2 = (first, second) => {
+    if (second === 0) {
+        return first;
+    }
+    return findGCD2(second, first % second);
+};
+
+console.log(findGCD2(48, 18)); // 6
