@@ -1,22 +1,38 @@
-// find greatest comman divisor
+// sort given array
 
-const findGCD1 = (first, second) => {
-    let least = first % second;
-    if (first % second === 0) {
-        return second;
+const sortArray = arr => {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i] > arr[j]) {
+                let temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
     }
-    return findGCD1(second, least);
+    return arr;
 };
-
-console.log(findGCD1(48, 18)); //6
+console.log(sortArray([1, 3, 4, 2]));
 
 // OR
 
-const findGCD2 = (first, second) => {
-    if (second === 0) {
-        return first;
+const quicksort = arr => {
+    if (arr.length <= 1) {
+        return arr;
     }
-    return findGCD2(second, first % second);
+    let pivot = arr[0];
+    let left = [];
+    let right = [];
+
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] < pivot) {
+            left.push(arr[i]);
+        } else {
+            right.push(arr[i]);
+        }
+    }
+
+    return quicksort(left).concat(pivot, quicksort(right));
 };
 
-console.log(findGCD2(48, 18)); // 6
+console.log(quicksort([1, 3, 4, 2]));
